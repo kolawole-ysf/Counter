@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <title>Counter</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+        }
+        .container{
+            height: 100vh;
+            position: relative;
+            background-image: url('https://images7.alphacoders.com/925/thumb-1920-925590.jpg');
+            background-position: center;
+            object-fit: cover;
+            background-size: cover;
+        }
+        .container .overlay{
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: .6;
+        }
+        .counter-container{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .count{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            line-height: 200px;
+            font-size: 48px;
+            color: white;
+            text-align: center;
+            border: 1px solid whitesmoke;
+            margin-bottom: 20px;
+        }
+        .count-btns{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .count-btns i{
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            line-height: 80px;
+            text-align: center;
+            border: 1px solid whitesmoke;
+            color: white;
+            font-size: 24px;
+            transition: .3s ease-in-out;
+        }
+        .count-btns span{
+            height: 80px;
+            width: 160px;
+            border-radius: 40px;
+            line-height: 80px;
+            text-align: center;
+            border: 1px solid whitesmoke;
+            color: white;
+            font-size: 24px;
+            margin:0 20px;
+            transition: .3s ease-in-out;
+        }
+        .count-btns span:hover,
+        .count-btns i:hover{
+            background-color: whitesmoke;
+            color: black;
+            cursor: pointer;
+        }
+        @media (max-width:450px){
+            .count-btns i{
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid whitesmoke;
+            color: white;
+            font-size: 24px;
+            transition: .3s ease-in-out;
+        }
+        .count-btns span{
+            height: 50px;
+            width: 120px;
+            border-radius: 25px;
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid whitesmoke;
+            color: white;
+            font-size: 24px;
+            margin:0 20px;
+            transition: .3s ease-in-out;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="overlay"></div>
+    <div class="counter-container">
+        <div class="count">
+            <span id="count">0</span>
+        </div>
+        <div class="count-btns">
+            <i class="fa-solid fa-minus btn"></i>
+            <span class="reset btn">Reset</span>
+            <i class="fa-solid fa-plus btn"></i>
+        </div>
+    </div>
+</div>
+<script>
+    const btns=document.querySelectorAll('.btn');
+    let count=parseInt(localStorage.getItem('count')) || 0;
+    btns.forEach(btn=>{
+        btn.addEventListener('click',(e)=>{
+           if(btn.classList.contains('fa-plus')){
+            count++;
+            document.querySelector('#count').innerText=count;
+           }
+           if(btn.classList.contains('fa-minus')){
+            count--;
+            document.querySelector('#count').innerText=count;
+           }
+           if(btn.classList.contains('reset')){
+            count=0;
+           document.querySelector('#count').innerText=count;
+           }
+
+            localStorage.setItem('count', count)
+})
+    })
+
+    function displayCount(){
+        let count=parseInt(localStorage.getItem('count'));
+        if(count){
+            document.querySelector('#count').innerText=count;
+        }
+    }
+    displayCount();
+</script>
+</body>
+</html>
