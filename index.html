@@ -37,7 +37,7 @@
             position: absolute;
             top:0;
             left:0;
-            opacity: .7;
+            opacity: .6;
             
         }
         .counter-container{
@@ -122,6 +122,29 @@
             height: 100px;
             border-radius: 12px;
         }
+        .quotes{
+            width: 100%;
+            position: absolute;
+            color: whitesmoke;
+            text-align: center;
+            font-size: 20px;
+            bottom:0%;
+            padding: 20px;
+            
+        }
+        #quote{
+            margin-top: 20px;
+        }
+        .quote-btn{
+           font-size: 16px;
+           border: 1px solid whitesmoke;
+           padding: 8px 12px;
+           background-color: whitesmoke;
+           color: black;
+           font-weight: bold;
+           cursor: pointer;
+           
+        }
         @media (max-width:600px){
             
             .count-btns i{
@@ -175,12 +198,22 @@
             cursor: pointer;
             transform: translateY(-10px);
         }
+        .quotes{
+            width: 100%;
+            position: absolute;
+            color: whitesmoke;
+            text-align: center;
+            font-size: 16px;
+            bottom:0%;
+            padding: 10px;
+            
+        }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://images7.alphacoders.com/925/thumb-1920-925590.jpg" alt="" id="main-bg">
+        <img src="https://www.pixelstalk.net/wp-content/uploads/images6/HD-Wallpaper-Sea.jpg" alt="" id="main-bg">
         <div class="bg-collection">
             <div class="bg">
                 <img src="https://wallpaperaccess.com/full/495564.jpg" alt="" class="small-bg">
@@ -206,6 +239,11 @@
             <i class="fa-solid fa-plus btn"></i>
         </div>
     </div>
+    <div class="quotes">
+        <span class="quote-btn">View Quotes</span>
+        <p id="quote"></p>
+    </div>
+    
 </div>
 <script>
     const btns=document.querySelectorAll('.btn');
@@ -236,6 +274,7 @@
         }
     }
     displayCount();
+
     //Change background images
 
     const mainImg=document.querySelector('#main-bg');
@@ -246,6 +285,20 @@
             mainImg.src=e.target.src;
         })
     })
+
+    //Generate random quotes
+    const quoteBtn=document.querySelector('.quote-btn');
+    const quote=document.querySelector('#quote');
+    
+    const quotes=['The greatest glory in living lies not in never falling, but in rising every time we fall. -Nelson Mandela','The way to get started is to quit talking and begin doing. -Walt Disney',"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking. -Steve Job",'If life were predictable it would cease to be life, and be without flavor. -Eleanor Roosevelt',"If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough. -Oprah Winfrey","If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success. -James Cameron","Life is what happens when you're busy making other plans. -John Lennon","Spread love everywhere you go. Let no one ever come to you without leaving happier. -Mother Teresa","When you reach the end of your rope, tie a knot in it and hang on. -Franklin D. Roosevelt","Always remember that you are absolutely unique. Just like everyone else. -Margaret Mead","Don't judge each day by the harvest you reap but by the seeds that you plant. -Robert Louis Stevenson","The future belongs to those who believe in the beauty of their dreams. -Eleanor Roosevelt","Many of life's failures are people who did not realize how close they were to success when they gave up. -Thomas A. Edison","Many of life's failures are people who did not realize how close they were to success when they gave up. -Thomas A. Edison","The real test is not whether you avoid this failure, because you won't. It's whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere. -Barack Obama",'"You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose." -Dr. Seuss',' alone cannot change the world, but I can cast a stone across the water to create many ripples. -Mother Teresa',"If you really look closely, most overnight successes took a long time. -Steve Jobs",'Success is not final; failure is not fatal: It is the courage to continue that counts. -Winston S. Churchill'];
+
+    
+
+    quoteBtn.addEventListener('click',()=>{
+        let randomNum=Math.floor(Math.random() * quotes.length);
+        quote.innerText=quotes[randomNum];
+    });
+
 </script>
 </body>
 </html>
